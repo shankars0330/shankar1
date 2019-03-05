@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.app.onetoone.Doctor" table = "Doctor">
+      
+      
+      <id name = "drId" type = "int" column="PRIMARY_KEY">
+         <generator class="assigned"/>
+      </id>
+      
+      <property name = "drName" column = "dname" type = "string"/>
+     <!-- <one-to-many name = "patient" column = "patient" unique="true" 
+         class="Address" not-null="true"/> -->
+         <list name="patients">
+         <key column="did"></key>
+         <index column="int"></index>
+         <one-to-many class="com.app.onetoone.Patient"/>
+         </list>
+   </class>
+   <class name = "com.app.onetoone.Patient" table = "Patient">      
+      <id name = "pId" type = "int" column = "id">
+         <generator class="assigned"/>
+      </id>
+      <property name = "pName" column = "pname" type = "string"/>  
+   </class>
+</hibernate-mapping>
+
+
